@@ -13,7 +13,7 @@ class DicomDataset(CustomDataset):
         split (str): Split txt file for Pascal VOC.
     """
 
-    CLASSES = ('GTV', 'GTVnd', 'CTVnd', 'BODY', 'BrainStem', 'SpinalCord',
+    CLASSES = ('GTV', 'GTVnd', 'CTVnd', 'BrainStem', 'SpinalCord',
                'Parotid', 'Chiasm', 'Cochlea', 'Eye', 'Lens', 'Hippocampus', 'Mandible',
                'Mastoid', 'OpticNerve', 'PharynxConst', 'Pituitary', 'Submandibular', 'TemporalLobe',
                'Thyroid', 'TMjoint')
@@ -26,5 +26,5 @@ class DicomDataset(CustomDataset):
 
     def __init__(self, split, **kwargs):
         super(DicomDataset, self).__init__(
-            img_suffix='.jpg', seg_map_suffix='.png', split=split, **kwargs)
+            img_suffix='.jpg', seg_map_suffix='.png', split=split, reduce_zero_label=True, **kwargs)
         assert osp.exists(self.img_dir) and self.split is not None
