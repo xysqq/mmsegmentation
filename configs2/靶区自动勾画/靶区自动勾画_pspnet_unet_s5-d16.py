@@ -5,3 +5,5 @@ _base_ = [
 model = dict(decode_head=dict(num_classes=21), auxiliary_head=dict(num_classes=21),
              test_cfg=dict(crop_size=(64, 64), stride=(42, 42)))
 evaluation = dict(metric='mDice')
+
+load_from = "https://download.openmmlab.com/mmsegmentation/v0.5/unet/fcn_unet_s5-d16_64x64_40k_drive/fcn_unet_s5-d16_64x64_40k_drive_20201223_191051-5daf6d3b.pth"
