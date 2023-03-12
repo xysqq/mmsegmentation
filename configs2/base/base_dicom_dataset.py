@@ -6,7 +6,7 @@ custom_imports = dict(
 
 # dataset settings
 dataset_type = 'DicomDataset'
-data_root = 'D:/Data'
+data_root = '/home/xys/Data'
 img_norm_cfg = dict(
     mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)
 crop_size = (256, 256)
@@ -39,26 +39,26 @@ test_pipeline = [
 ]
 data = dict(
     samples_per_gpu=4,
-    workers_per_gpu=0,
-    persistent_workers=False,
+    workers_per_gpu=4,
+    persistent_workers=True,
     train=dict(
         type=dataset_type,
         data_root=data_root,
-        img_dir='ct_images',
-        ann_dir='ct_voc/train/class_labels',
-        split='ct_voc/train/images_ids.txt',
+        img_dir='images',
+        ann_dir='images_coco/train/class_labels',
+        split='images_coco/train/images_ids.txt',
         pipeline=train_pipeline),
     val=dict(
         type=dataset_type,
         data_root=data_root,
-        img_dir='ct_images',
-        ann_dir='ct_voc/val/class_labels',
-        split='ct_voc/val/images_ids.txt',
+        img_dir='images',
+        ann_dir='images_coco/val/class_labels',
+        split='images_coco/val/images_ids.txt',
         pipeline=test_pipeline),
     test=dict(
         type=dataset_type,
         data_root=data_root,
-        img_dir='ct_images',
-        ann_dir='ct_voc/val/class_labels',
-        split='ct_voc/val/images_ids.txt',
+        img_dir='images',
+        ann_dir='images_coco/val/class_labels',
+        split='images_coco/val/images_ids.txt',
         pipeline=test_pipeline))
