@@ -2,7 +2,7 @@ _base_ = [
     '../base/deeplabv3_unet_s5-d16.py', '../base/base_dicom_dataset.py',
     '../base/default_runtime.py', '../base/schedule_80k.py'
 ]
-model = dict(decode_head=dict(num_classes=22), auxiliary_head=dict(num_classes=22),
+model = dict(decode_head=dict(num_classes=23), auxiliary_head=dict(num_classes=23),
              test_cfg=dict(crop_size=(64, 64), stride=(42, 42)))
 evaluation = dict(metric='mDice')
 

@@ -14,17 +14,17 @@ class DicomDataset(CustomDataset):
     """
 
     CLASSES = (
-        'background', 'BODY', 'BrainStem', 'CTV', 'CTVnd', 'Chiasm', 'Cochlea',
-        'Eye', 'GTV', 'GTVnd', 'Hippocampus', 'Lens', 'Mandible', 'Mastoid',
-        'OpticNerve', 'Parotid', 'PharynxConst', 'SpinalCord', 'Submandibular',
-        'TMjoint', 'TemporalLobe', 'Thyroid')
+        'background', 'BODY', 'BrainStem', 'CTV1', 'CTV2', 'CTVnd', 'GTV',
+        'GTVnd', 'Chiasm', 'Cochlea', 'Eye', 'Hippocampus', 'Lens', 'Mandible',
+        'Mastoid', 'OpticNerve', 'Parotid', 'PharynxConst', 'SpinalCord',
+        'Submandibular', 'TMjoint', 'TemporalLobe', 'Thyroid')
 
     PALETTE = [
         [0, 0, 0], [128, 0, 0], [0, 128, 0], [128, 128, 0], [0, 0, 128],
         [128, 0, 128], [0, 128, 128], [128, 128, 128], [64, 0, 0], [192, 0, 0],
         [64, 128, 0], [192, 128, 0], [64, 0, 128], [192, 0, 128],
         [64, 128, 128], [192, 128, 128], [0, 64, 0], [128, 64, 0], [0, 192, 0],
-        [128, 192, 0], [0, 64, 128], [64, 64, 64]
+        [128, 192, 0], [0, 64, 128], [64, 64, 64], [64, 64, 128]
     ]
 
     def __init__(self, split, **kwargs):
