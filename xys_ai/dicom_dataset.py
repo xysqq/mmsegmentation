@@ -13,16 +13,17 @@ class DicomDataset(CustomDataset):
         split (str): Split txt file for Pascal VOC.
     """
 
-    CLASSES = ('background', 'GTV', 'GTVnd', 'CTVnd', 'BrainStem', 'SpinalCord',
-               'Parotid', 'Chiasm', 'Cochlea', 'Eye', 'Lens', 'Hippocampus', 'Mandible',
-               'Mastoid', 'OpticNerve', 'PharynxConst', 'Pituitary', 'Submandibular', 'TemporalLobe',
-               'Thyroid', 'TMjoint')
+    CLASSES = (
+    'background', 'BODY', 'BrainStem', 'CTV', 'CTVnd', 'Chiasm', 'Cochlea', 'Eye', 'GTV', 'GTVnd', 'Hippocampus',
+    'Lens', 'Mandible',
+    'Mastoid', 'OpticNerve', 'Parotid', 'PharynxConst', 'SpinalCord', 'Submandibular', 'TMjoint', 'TemporalLobe',
+    'Thyroid')
 
     PALETTE = [[0, 0, 0], [128, 0, 0], [0, 128, 0], [128, 128, 0], [0, 0, 128],
                [128, 0, 128], [0, 128, 128], [128, 128, 128], [64, 0, 0],
                [192, 0, 0], [64, 128, 0], [192, 128, 0], [64, 0, 128],
                [192, 0, 128], [64, 128, 128], [192, 128, 128], [0, 64, 0],
-               [128, 64, 0], [0, 192, 0], [128, 192, 0], [0, 64, 128]]
+               [128, 64, 0], [0, 192, 0], [128, 192, 0], [0, 64, 128], [64, 64, 64]]
 
     def __init__(self, split, **kwargs):
         super(DicomDataset, self).__init__(
