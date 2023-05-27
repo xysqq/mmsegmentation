@@ -14,10 +14,7 @@ class DicomDataset(CustomDataset):
     """
 
     CLASSES = (
-        'background', 'BODY', 'BrainStem', 'CTV1', 'CTV2', 'CTVnd', 'GTV',
-        'GTVnd', 'Chiasm', 'Cochlea', 'Eye', 'Hippocampus', 'Lens', 'Mandible',
-        'Mastoid', 'OpticNerve', 'Parotid', 'PharynxConst', 'SpinalCord',
-        'Submandibular', 'TMjoint', 'TemporalLobe', 'Thyroid')
+        'background', 'GTV', 'GTVnd')
 
     PALETTE = [
         [0, 0, 0], [128, 0, 0], [0, 128, 0], [128, 128, 0], [0, 0, 128],
