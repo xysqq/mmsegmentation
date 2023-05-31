@@ -12,7 +12,7 @@ img_norm_cfg = dict(
 crop_size = (256, 256)
 train_pipeline = [
     dict(type='LoadImageFromFile'),
-    dict(type='LoadAnnotations'),
+    dict(type='LoadAnnotations', reduce_zero_label=True),
     dict(type='Resize', img_scale=(512, 512), ratio_range=(0.5, 2.0)),
     dict(type='RandomCrop', crop_size=crop_size, cat_max_ratio=0.75),
     dict(type='RandomFlip', prob=0.5),
@@ -44,21 +44,18 @@ data = dict(
     train=dict(
         type=dataset_type,
         data_root=data_root,
-        img_dir='images',
-        ann_dir='images_coco/train/class_labels',
-        split='images_coco/train/images_ids.txt',
+        img_dir='images_ct_voc/train',
+        ann_dir='images_ct_voc/train',
         pipeline=train_pipeline),
     val=dict(
         type=dataset_type,
         data_root=data_root,
-        img_dir='images',
-        ann_dir='images_coco/val/class_labels',
-        split='images_coco/val/images_ids.txt',
+        img_dir='images_ct_voc/val',
+        ann_dir='images_ct_voc/val',
         pipeline=test_pipeline),
     test=dict(
         type=dataset_type,
         data_root=data_root,
-        img_dir='images',
-        ann_dir='images_coco/val/class_labels',
-        split='images_coco/val/images_ids.txt',
+        img_dir='images_ct_voc/val',
+        ann_dir='images_ct_voc/val',
         pipeline=test_pipeline))
