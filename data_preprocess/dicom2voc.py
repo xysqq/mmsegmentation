@@ -82,10 +82,12 @@ if __name__ == '__main__':
     else:
         data_dir = "/home/xys/Data"
 
-    images_fused_dir = rf"{data_dir}/images_fused_voc"
     images_ct_dir = rf"{data_dir}/images_ct_voc"
-    remove_and_make_dirs(images_fused_dir)
-    remove_and_make_dirs(images_ct_dir)
+    images_fused_dir = rf"{data_dir}/images_fused_voc"
+    remove_and_make_dirs(f"{images_ct_dir}/train")
+    remove_and_make_dirs(f"{images_ct_dir}/val")
+    remove_and_make_dirs(f"{images_fused_dir}/train")
+    remove_and_make_dirs(f"{images_fused_dir}/val")
 
     ct_dicom_dirs = glob(rf"{data_dir}/npc/*/首次CT/*/*/CT")
 
@@ -95,6 +97,11 @@ if __name__ == '__main__':
         for x in open(rf"{data_dir}/label_target.txt", encoding='utf-8').readlines()
     }
     category_list = ['GTV', 'GTVnd']
+
+    patient_id_list = list(set(ct_dicom_dir.split('/')[5] for ct_dicom_dir in ct_dicom_dirs))
+    n = len(patient_id_list)
+    split_index = int(0.8 * n)
+    train_patient_id_list = patient_id_list[:split_index]
 
     start_time = time.time()
     for ct_dicom_dir in tqdm(ct_dicom_dirs):
@@ -107,8 +114,10 @@ if __name__ == '__main__':
         # 找到CT图像与MRI图像之间的对应关系
         ct_mri_matching_dic = match_ct_and_mri(
             str(ct_dicom_dir), str(mri_T1_dir))
-        # 单通道
-        dicom2voc(ct_dicom_dir, structure, patient_id, images_ct_dir)
+        if patient_id in train_patient_id_list:
+            dicom2voc(ct_dicom_dir, structure, patient_id, f"{images_ct_dir}/train")
+        else:
+            dicom2voc(ct_dicom_dir, structure, patient_id, f"{images_ct_dir}/val")
         # 三通道
         # mutil_dicom2labelme(ct_dicom_dir, structure, [mri_T1_dir, mri_T2_dir], patient_id, images_fused_dir)
     end_time = time.time()
